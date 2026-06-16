@@ -21,6 +21,7 @@ class difficulty_window(QMainWindow):
         self.user_input = QLineEdit("Input an interger")
         self.enter = QPushButton("Enter")
         self.enter.clicked.connect(self.enterDifficulty)
+        self.user_input.returnPressed.connect(self.enterDifficulty)
 
         layout = QVBoxLayout(container)
         layout.addWidget(self.label)
