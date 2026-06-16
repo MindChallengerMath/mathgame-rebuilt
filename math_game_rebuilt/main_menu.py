@@ -11,16 +11,15 @@ from PySide6.QtWidgets import (QMainWindow,
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QShortcut
 
-#Game.equation()
 class main_window(QMainWindow):
     def __init__(self):
        
         super().__init__()
-        self.setWindowTitle("Mental Math Challenge")
+        self.setWindowTitle("Mental Math Master")
         container = QWidget()
         self.setCentralWidget(container)
         layout = QVBoxLayout(container)
-        self.title = QLabel("Mental Math Challenge")
+        self.title = QLabel("Mental Math Master")
         self.title.setAlignment(Qt.AlignCenter)
         self.start = QPushButton("Start")
         self.modifiers = QPushButton("Modifiers")
