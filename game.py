@@ -29,7 +29,7 @@ class mainWindow(QMainWindow):
             self.answer = Operations.divide(self.n1, self.n2) 
         self.setWindowTitle("Mental Math Master")
         self.setCentralWidget(container)
-        layout = QVBoxLayout(container)
+        self.thelayout = QVBoxLayout(container)
         self.score = QLabel("0")
         self.score.setAlignment(Qt.AlignCenter)
         self.equation = QLabel(f"{self.n1} {self.sign} {self.n2}")
@@ -42,12 +42,37 @@ class mainWindow(QMainWindow):
         self.enter = QPushButton("Enter")
         self.enter.clicked.connect(self.enterAnswer)
         layout.addWidget(self.score)
-        layout.addWidget(self.equation)
-        layout.addWidget(self.userInput)
-        layout.addWidget(self.enter)
+        self.thelayout.addWidget(self.equation)
+        self.thelayout.addWidget(self.userInput)
+        self.thelayout.addWidget(self.enter)
     def enterAnswer(self):
         try:
             float(self.userInput.text())
+            if float(self.userInput.text()) == self.answer:
+              self.userInput.setText("")
+              self.score += 10
+              self.n1 = random.randint(1, 10)
+              self.n2 = random.randint(1, 10)
+              self.sign = random.choice(operators)
+              if self.sign == "+":
+                answer = Operations.plus(n1, n2)
+              elif self.sign == "-":
+                answer = Operations.minus(n1, n2)
+              elif self.sign == "*":
+                answer = Operations.multi(n1, n2)
+              else:
+                answer = Operations.divide(n1, n2)
+              self.showScore.setText(f"Score: {self.score}")
+              self.equation.setText(f"{self.n1} {self.sign} {self.n2}")
+            else:
+              self.showScore.setText(f"Final Score: {self.score}")
+              self.equation.setText("You Lose")
+              self.thelayout.removeWidget(self.enter)
+              self.thelayout.removeWidget(self.userInput)
+              self.enter.deleteLater()
+              self.userInput.deleteLater()
+              
+
         except ValueError:
             self.userInput.setText("That in not a number")
 
