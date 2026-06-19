@@ -34,7 +34,11 @@ class mainWindow(QMainWindow):
         self.score.setAlignment(Qt.AlignCenter)
         self.equation = QLabel(f"{self.n1} {self.sign} {self.n2}")
         self.equation.setAlignment(Qt.AlignCenter)
+      
         self.userInput = QLineEdit()
+        self.userInput.returnPressed.connect(self.enterAnswer)
+
+      
         self.enter = QPushButton("Enter")
         self.enter.clicked.connect(self.enterAnswer)
         layout.addWidget(self.score)
